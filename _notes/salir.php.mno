@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_email" value="name:HORA_INICIO;datatype:time,name:HORA_FIN;datatype:time,name:FECHA;datatype:date,name:DESCRIPCION;datatype:string,name:TIPO;datatype:string,name:LUGAR;datatype:string" />
+	<infoitem key="UD_smail" value="name:MAIL;datatype:string" />
+</info>
