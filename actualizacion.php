@@ -137,6 +137,7 @@ $totalRows_datos = mysql_num_rows($datos);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" href="css/estilos.css">

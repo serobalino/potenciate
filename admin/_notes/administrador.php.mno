@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_xfacul" value="name:FACULTAD;datatype:string,name:COUNT(estudiantes.CI);datatype:int" />
+	<infoitem key="UD_lugares" value="name:COD_L;datatype:int,name:REFERENCIA;datatype:string,name:DIRECCION;datatype:string,name:LONGITUD;datatype:real,name:LATITUD;datatype:real" />
+	<infoitem key="UD_eventos" value="name:CODIGO;datatype:int,name:FECHA;datatype:date,name:HORA_INICIO;datatype:time,name:HORA_FIN;datatype:time,name:DESCRIPCION;datatype:string,name:TIPO;datatype:string,name:CUPO;datatype:int,name:PONENTE;datatype:string,name:LUGAR;datatype:string" />
+</info>
