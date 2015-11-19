@@ -56,7 +56,7 @@ $(document).ready(function() {
 			cupo: {
                 validators: {
 					regexp: {
-                        regexp: /^[1-9\s]+$/,
+                        regexp: /^[0-9\s]+$/,
                         message: 'Solo se aceptan números naturales.'
                     }
                 }
@@ -76,6 +76,91 @@ $(document).ready(function() {
                 }
             },
 			hora_fin: {
+                validators: {
+                    notEmpty: {
+                        message: 'Elija una hora de fin.'
+                    }
+                }
+            }
+        }
+    }),
+    $('#frm_editar').bootstrapValidator({
+        message: 'Valor ingresado invalido.',
+        fields: {
+            descripcione: {
+                message: 'El campo descripción no es válido.',
+                validators: {
+                    notEmpty: {
+                        message: 'El campo descripción es necesario.'
+                    },
+                    stringLength: {
+                        min: 3,
+                        max: 60,
+                        message: 'El campo descripción tiene mínimo 3 letras.'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z\.\s\ñ\Ñ0-9]+$/,
+                        message: 'No se admiten caracteres especiales.'
+                    }
+                }
+            },
+            lugare: {
+                message: 'Debe elejir o crear un lugar.',
+                validators: {
+                    regexp: {
+                        regexp: /^[0-9\s]+$/,
+                        message: 'No se admiten caracteres especiales.'
+                    }
+                }
+            },
+			tipoe: {
+                message: 'El tipo de evento es necesario.',
+                validators: {
+                    notEmpty: {
+                        message: 'El tipo de evento es necesario.'
+                    },
+                    stringLength: {
+                        min: 4,
+                        max: 20,
+                        message: 'El tipo de evento tiene maximo 20 caracteres.'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z\.\s\ñ\Ñ-]+$/,
+                        message: 'Puede separar con "-" o espacio en blanco.'
+                    }
+                }
+            },
+            ponentee: {
+                validators: {
+                    regexp: {
+                        regexp: /^[a-zA-Z\.\s\ñ\Ñ]+$/,
+                        message: 'No se admiten caracteres especiales.'
+                    }
+                }
+            },
+			cupoe: {
+                validators: {
+					regexp: {
+                        regexp: /^[0-9\s]+$/,
+                        message: 'Solo se aceptan números naturales.'
+                    }
+                }
+            },
+			fechae: {
+                validators: {
+                    notEmpty: {
+                        message: 'Elija una fecha.'
+                    }
+                }
+            },
+			hora_inicioe: {
+                validators: {
+                    notEmpty: {
+                        message: 'Elija una hora de inicio.'
+                    }
+                }
+            },
+			hora_fine: {
                 validators: {
                     notEmpty: {
                         message: 'Elija una hora de fin.'
