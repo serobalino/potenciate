@@ -67,7 +67,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 mysql_select_db($database_potenciate, $potenciate);
-$query_facultad = "SELECT * FROM facultades ORDER BY facul DESC";
+$query_facultad = "SELECT * FROM facultades ORDER BY FACUL DESC";
 $facultad = mysql_query($query_facultad, $potenciate) or die(mysql_error());
 $row_facultad = mysql_fetch_assoc($facultad);
 $totalRows_facultad = mysql_num_rows($facultad);
@@ -137,7 +137,6 @@ $totalRows_datos = mysql_num_rows($datos);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" href="css/estilos.css">
@@ -184,7 +183,7 @@ $totalRows_datos = mysql_num_rows($datos);
                 <select name="facultad" id="facultad" class="form-control" required>
                   <option default value="<?php echo $row_datos['FACULTAD'];?>"><?php echo $row_datos['FACULTAD'];?></option>
                   <?php do { ?>
-                  <option value="<?php echo $row_facultad['facul'];?> "><?php echo $row_facultad['facul']; ?>  </option>
+                  <option value="<?php echo $row_facultad['FACUL'];?> "><?php echo $row_facultad['FACUL']; ?>  </option>
                   <?php } while ($row_facultad = mysql_fetch_assoc($facultad)); ?>
                 </select>
             </div>

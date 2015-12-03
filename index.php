@@ -77,7 +77,7 @@ if (isset($_POST['ci'])) {
 <!doctype html>
 <html lang="es">
 <head>
-<link rel="icon" type="image/x-icon" href="logo.png">
+<link rel="icon" type="image/x-icon" href="http://feuce.ec/potenciate/logo.png">
 <meta name="twitter:image:src" content="http://www.feuce.ec/potenciate/logo.png">
 <meta itemprop="image" content="http://www.feuce.ec/potenciate/logo.png">
 <meta property="og:image" content="http://www.feuce.ec/potenciate/logo.png">
@@ -85,9 +85,8 @@ if (isset($_POST['ci'])) {
 <meta name="description" content="FEUCE-Q POTÉNCIATE"/>
 <meta name="author" content="SebastiaN RobalinO">
 <meta name="keywords" content="POTÉNCIATE">
-<link rel="shortcut icon" type="image/x-icon" href="www.feuce.ec/potenciate/logo.png" />
+<link rel="shortcut icon" type="image/x-icon" href="/logo.png" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
@@ -114,8 +113,10 @@ if (isset($_POST['ci'])) {
         <div class="form-group">
         	<div class="input-group">
                 <label for="cedula" class="sr-only">Cedula:</label>
+
                 <div class="input-group-addon">CI</div>
-                <input class="form-control" type="text" id="cedula" name="ci" placeholder="CI/PASAPORTE" required title="Ingresa una Cédula válida"/>
+
+                <input class="form-control" type="text" id="cedula" name="ci" placeholder="CI/PASAPORTE" required/>
                 </div>
             </div>
             <br><br>

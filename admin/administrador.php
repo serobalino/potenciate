@@ -1,5 +1,6 @@
 <?php require_once('../Connections/potenciate.php'); ?>
 <?php
+date_default_timezone_set('America/Los_Angeles');
 $mensaje="";
 if ((isset($_GET["alerta"])) && ($_GET["alerta"] == "ee"))
 	$mensaje='<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Éxito!</strong> Evento eliminado correctamente.</div>';
@@ -313,6 +314,12 @@ $query_lug2 = "SELECT * FROM lugares ORDER BY REFERENCIA ASC";
 $lug2 = mysql_query($query_lug2, $potenciate) or die(mysql_error());
 $row_lug2 = mysql_fetch_assoc($lug2);
 $totalRows_lug2 = mysql_num_rows($lug2);
+
+mysql_select_db($database_potenciate, $potenciate);
+$query_asist = "SELECT * FROM cursos WHERE FECHA = date(now()) ORDER BY HORA_INICIO";
+$asist = mysql_query($query_asist, $potenciate) or die(mysql_error());
+$row_asist = mysql_fetch_assoc($asist);
+$totalRows_asist = mysql_num_rows($asist);
 	?>
       <h3>Crear Nuevo Evento</h3>
       <div class="container">
@@ -538,11 +545,39 @@ $totalRows_lug2 = mysql_num_rows($lug2);
               </div>
             </div>
           </div>
-          
-          
           <?php } while ($row_eventos = mysql_fetch_assoc($eventos)); ?> 
         </table>
         </div>
+    </div>
+    <div id="menu4" class="tab-pane fade">
+    	
+        <h4><?php echo "Eventos de hoy para tomar asistencia ".fechas($hoy);?></h4>
+          <div class="table-responsive">
+          <form action="asistencia.php" method="POST">
+            <table class="table table-hover container">
+                <tr>
+                  <th class="text-center">Horario</th>
+                  <th>Descripción</th>
+                  <th class="hidden-xs">Tipo</th>
+                  <th class="hidden-xs">Cupo</th>
+                  <th>Ponente</th>
+                  <th>Lugar</th>
+                  <th class="text-center">Seleccionar</th>
+                </tr>
+                <?php do { ?>
+                <tr>
+                  <td class="text-center"><?php echo date_format(new DateTime($row_asist['HORA_INICIO']), 'H:i') ." - ".date_format(new DateTime($row_asist['HORA_FIN']), 'H:i'); ?></td>
+                  <td><?php echo $row_asist['DESCRIPCION']; ?></td>
+                  <td class="hidden-xs"><?php echo $row_asist['TIPO']; ?></td>
+                  <td class="hidden-xs"><?php if ($row_asist['CUPO']=='' || $row_asist['CUPO']==0) echo "Ilimitado" ;else echo $row_asist['CUPO']; ?></td>
+                  <td><?php echo $row_asist['PONENTE']; ?></td>
+                  <td><?php echo $row_asist['LUGAR'];?></td>
+                  <td class="text-center"><button class="btn-link" name="codigo" type="submit" value="<?php echo $row_asist['CODIGO'];?>"><span class="glyphicon glyphicon-ok"></span></button></td>
+              	</tr>
+                <?php } while ($row_asist = mysql_fetch_assoc($asist)); ?>
+           </table>
+        </form>
+         </div>
     </div>
   </div>
 </div>
@@ -624,4 +659,6 @@ mysql_free_result($lugares);
 mysql_free_result($eventos);
 
 mysql_free_result($lug2);
+
+mysql_free_result($asist);
 ?>

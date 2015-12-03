@@ -169,7 +169,6 @@ $totalRows_CursEstudiantes = mysql_num_rows($CursEstudiantes);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" href="css/estilos.css">
@@ -263,7 +262,7 @@ $totalRows_CursEstudiantes = mysql_num_rows($CursEstudiantes);
               <td class="text-center"><?php echo date_format(new DateTime($row_fecha['HORA_INICIO']), 'H:i') ." - ".date_format(new DateTime($row_fecha['HORA_FIN']), 'H:i'); ?></td>
               <td><?php echo $row_fecha['DESCRIPCION']; ?></td>
               <td class="hidden-xs"><?php echo $row_fecha['TIPO']; ?></td>
-              <td class="hidden-xs"><?php if ($row_fecha['CUPO']=='' || $row_fecha['CUPO']==0) echo "Ilimitado" ;else echo $row_fecha['CUPO']; ?></td>
+              <td class="hidden-xs"><?php if ($row_fecha['CUPO']=='') echo "Ilimitado" ;else echo $row_fecha['CUPO']; ?></td>
               <td><?php echo $row_fecha['PONENTE']; ?></td>
               <td><?php echo $row_fecha['LUGAR']; ?></td>
               <td align="center">

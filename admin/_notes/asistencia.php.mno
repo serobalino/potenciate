@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_nombre" value="name:CODIGO;datatype:int,name:FECHA;datatype:date,name:HORA_INICIO;datatype:time,name:HORA_FIN;datatype:time,name:DESCRIPCION;datatype:string,name:TIPO;datatype:string,name:CUPO;datatype:int,name:PONENTE;datatype:string,name:LUGAR;datatype:string" />
+	<infoitem key="UD_estudiante" value="name:CI;datatype:string,name:NOMBRE;datatype:string,name:APELLIDO;datatype:string,name:FACULTAD;datatype:string,name:MAIL;datatype:string,name:FECHAI;datatype:datetime" />
+</info>
