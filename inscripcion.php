@@ -143,7 +143,7 @@ if (isset($_POST['fechai'])) {
   $colname_fecha = $_POST['fechai'];
 }
 mysql_select_db($database_potenciate, $potenciate);
-$query_fecha = sprintf("SELECT * FROM cursos WHERE FECHA = %s ORDER BY HORA_INICIO", GetSQLValueString($colname_fecha, "date"));
+$query_fecha = sprintf("SELECT * FROM cursos,lugares WHERE lugares.COD_L=cursos.LUGAR AND FECHA = %s ORDER BY HORA_INICIO", GetSQLValueString($colname_fecha, "date"));
 $fecha = mysql_query($query_fecha, $potenciate) or die(mysql_error());
 $row_fecha = mysql_fetch_assoc($fecha);
 $totalRows_fecha = mysql_num_rows($fecha);
@@ -264,7 +264,7 @@ $totalRows_CursEstudiantes = mysql_num_rows($CursEstudiantes);
               <td class="hidden-xs"><?php echo $row_fecha['TIPO']; ?></td>
               <td class="hidden-xs"><?php if ($row_fecha['CUPO']=='') echo "Ilimitado" ;else echo $row_fecha['CUPO']; ?></td>
               <td><?php echo $row_fecha['PONENTE']; ?></td>
-              <td><?php echo $row_fecha['LUGAR']; ?></td>
+              <td><?php echo "<a href='http://maps.google.com/?q=".$row_fecha['LATITUD'].",".$row_fecha['LONGITUD']."' target='_blank'>".$row_fecha['REFERENCIA']."</a>"; ?></td>
               <td align="center">
               <?php 
 					if($checar==0)

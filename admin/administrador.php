@@ -187,7 +187,7 @@ if(isset($_POST['cons']) && isset($_POST['fechaD']) && isset($_POST['fechaH'])){
 $feD=$_POST['fechaD'];
 $feH=$_POST['fechaH'];
 mysql_select_db($database_potenciate, $potenciate);
-$query_xfacul = "SELECT estudiantes.FACULTAD,COUNT(estudiantes.CI) FROM registros,estudiantes,cursos WHERE registros.CI=estudiantes.CI and registros.CODIGO=cursos.CODIGO AND cursos.FECHA  BETWEEN '".$feD."' AND '".$feH."' GROUP BY estudiantes.FACULTAD";
+$query_xfacul = "SELECT estudiantes.FACULTAD,COUNT(estudiantes.CI),COUNT(registros.ASISTENCIA) FROM registros,estudiantes,cursos WHERE registros.CI=estudiantes.CI and registros.CODIGO=cursos.CODIGO AND cursos.FECHA  BETWEEN '".$feD."' AND '".$feH."' GROUP BY estudiantes.FACULTAD";
 $xfacul = mysql_query($query_xfacul, $potenciate) or die(mysql_error());
 $row_xfacul = mysql_fetch_assoc($xfacul);
 $totalRows_xfacul = mysql_num_rows($xfacul);
@@ -228,7 +228,7 @@ $hoy=date('Y-m-d'); ?>
 <div class="container">
   <legend class="text-left">Administración</legend>
   <?php echo $mensaje ?>
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs hidden-print">
     <li class="active"><a data-toggle="tab" href="#esta">Estadísticas</a></li>
     <li><a data-toggle="tab" href="#menu2">Nuevo Evento</a></li>
     <li><a data-toggle="tab" href="#menu3">Eli./Edi. Eventos</a></li>
@@ -239,7 +239,7 @@ $hoy=date('Y-m-d'); ?>
       <h3>Estadísticas</h3>
 	  <h4>Consulta de inscritos por fecha de Evento</h4>
       
-      <form action=""  method="post" class="form" name="consulta" role="form">
+      <form action=""  method="post" class="form hidden-print" name="consulta" role="form">
         <fieldset>
 		      <div class="form-group col-md-6">
                 <label for="dtp_input2" class="control-label">Desde</label>
@@ -271,6 +271,9 @@ $hoy=date('Y-m-d'); ?>
         <br>
       </form>
         <?php if(isset($_POST['cons']) && isset($_POST['fechaD']) && isset($_POST['fechaH'])){?>
+        <div class="container text-center">
+        	<p> de <?php echo fechas($_POST['fechaD'])." hasta ".fechas($_POST['fechaH']);?></p>
+        </div>
         <div class="table-responsive">
         <table class="table table-hover table-bordered">
 			<tr>
@@ -278,20 +281,28 @@ $hoy=date('Y-m-d'); ?>
                 <th>Inscritos</th>
                 <th>Asisténcia</th>
             </tr>
-            <?php $ins=0 ?>
+            <?php $ins=$asis=0 ?>
             <?php do { ?>
             <tr>
             	<td><?php echo $row_xfacul['FACULTAD']; ?></td>
                 	<?php $ins+=$row_xfacul['COUNT(estudiantes.CI)']; ?>
             	<td><?php echo $row_xfacul['COUNT(estudiantes.CI)']; ?></td>
-                <td></td> 	
+					<?php $asis+=$row_xfacul['COUNT(registros.ASISTENCIA)']; ?>
+				<td><?php echo $row_xfacul['COUNT(registros.ASISTENCIA)']; ?></td>
             </tr>
             <?php } while ($row_xfacul = mysql_fetch_assoc($xfacul)); ?>
             <tr class="bg-success">
-            	<td> TOTAL</td>
-                <td><?php echo $ins;?></td>
+            	<td><b>TOTAL</b></td>
+                <td><b><?php echo $ins;?></b></td>
+				<td><b><?php echo $asis;?></b></td>
             </tr>
         </table>
+		<div class="text-center hidden-print">
+		<button type="button" onclick="window.print();" class="btn">
+		<span class="glyphicon glyphicon-print"></span> Imprimir
+		</button>
+		<br>
+		</div>
         </div>
 		<?php } ?>
     </div>
@@ -395,7 +406,7 @@ $totalRows_asist = mysql_num_rows($asist);
               <label for="lugar" class="sr-only">Lugar de evento :</label>
                   <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
                   <select name="lugar" id="lugar" class="form-control" required >
-                      <option default value=" ">no establecido</option>
+                      <option default value="0">no establecido</option>
                       <?php do { ?>
                       <option value="<?php echo $row_lug2['COD_L']; ?>"><?php echo $row_lug2['REFERENCIA']; ?></option>
                       <?php } while ($row_lug2 = mysql_fetch_assoc($lug2)); ?>
